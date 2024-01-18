@@ -1,0 +1,60 @@
+{% include 'base/header.html' %}
+{% block content %}
+<div class="container-xxl">
+	<div class="table-responsive">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-16">
+						<h2> <b> Todays Appointment List</b></h2>
+					</div>
+					
+				</div>
+			</div>
+			<table class="table table-striped table-hover" style="table-layout: fixed; width: 100%;">
+				<thead>
+					<tr>
+						<th>
+							Sr.no
+						</th>
+						<th>Doctor Name</th>
+						<th>Date of Meeting</th>
+						<th>Time_of_schedule</th>
+                        <th>Enteredby</th>
+                        
+				</thead>
+			{% if object %}
+                
+				<tbody>
+					{% for obj in object %}
+					
+					<tr>
+						<td>
+							{{ forloop.counter }}
+						</td>
+						
+						<td>{{ obj.Doctor_name }}</td>
+						<td>{{ obj.Date_of_schedule }}</td>
+						<td>{{ obj.Time_of_schedule }}</td>
+                        <td>{{ obj.Enteredby }}</td>
+						
+					</tr>
+					{% endfor %}
+					
+
+					
+					
+				</tbody>
+			
+                
+			</table>
+			{% else %}
+					<h3>No Schedule for Today</h3>
+			{% endif %}
+			
+
+			
+		</div>
+	</div>        
+</div>
+{% endblock %}

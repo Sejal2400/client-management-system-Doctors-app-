@@ -1,0 +1,136 @@
+{% include 'base/header.html' %}
+{% block content %}
+<div class="container-xxl">
+	{% if user.is_superuser %}
+<div style="border: 3px; color: blue; width:700px;" class="w3">
+	
+	<a style= "float: left; width: 300px"  href="{% url 'productlistt' %}"><h5 ><button type="button" class="btn btn-primary btn-lg"><i class="fas fa-sharp fa-regular fa-filter"></i>Filter by Employee</button></h5></a>
+{% endif %}
+	<div class="dropdown show" style= "float: right; width: 300px" >
+		<a class="btn btn-primary btn-lg dropdown-toggle" href="#" role="button" id="searchDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<i class="fas fa-sort-alpha-up"></i> Sort by 
+		</a>
+	  
+		<div class="dropdown-menu" aria-labelledby="searchDropdown">
+		  <a class="dropdown-item" href="{% url 'pn' %}">Product name</a>
+		  <a class="dropdown-item" href="{% url 'cn' %}">Company name</a>
+		  <a class="dropdown-item" href="{% url 'pp' %}">Product price</a>
+		  {% if user.is_superuser %}
+		  <a class="dropdown-item" href="{% url 'enb' %}">Enteredby</a>
+		  {% endif %}
+		</div>
+	  </div>
+</div>
+
+	<div class="table-responsive">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					
+					<div class="col-sm-16">
+						<h2> <b>View Product</b></h2>
+					</div>
+					
+				</div>
+			</div>
+			<table class="table table-striped table-hover" style="table-layout: fixed; width: 100%;">
+				<thead>
+					<tr>
+						<th>
+							Sr.no
+						</th>
+						<th>Product Name</th>
+						<th>Comapany Name</th>
+						{% if user.is_superuser %}
+						<th>Image</th>
+						{% endif %}
+						<th>Price</th>
+						<th>Entered By</th>
+                        <th>Action</th>
+					</tr>
+				</thead>
+				{% if flag %}
+				
+				
+				<tbody>
+					{% if user.is_superuser %}
+					
+						{% for obj in product_list %}
+					<tr>
+						<td>
+							{{ forloop.counter }}
+						</td>
+						<td>{{ obj.Product_name }}</td>
+						<td>{{ obj.Company_name }}</td>
+						
+						<td><img src="{{ obj.Product_image.url }}" alt="" width="100px" height="100px"></td>
+						
+						<td>{{ obj.Product_price }}</td>
+                        <td>{{ obj.Enteredby }}</td>
+						<td>
+							<a href="{% url 'editproduct' obj.id %}" class="edit" ><i class="material-icons"  title="Edit">&#xE254;</i> </a>  <a href="{% url 'delete' obj.id %}" class="delete"><i class="material-icons" title="Delete">&#xE872;</i></a>
+						</td>
+					</tr>
+						{% endfor %}
+					{% else %}
+						{% for obj in eproducts %}
+					<tr>
+						<td>
+							{{ forloop.counter }}
+						</td>
+						<td>{{ obj.Product_name }}</td>
+						<td>{{ obj.Company_name }}</td>
+						<td>{{ obj.Product_price }}</td>
+                        <td>{{ obj.Enteredby }}</td>
+						<td>
+							<a href="{% url 'editproduct' obj.id %}" class="edit" ><i class="material-icons"  title="Edit">&#xE254;</i> </a>  <a href="{% url 'delete' obj.id %}" class="delete"><i class="material-icons" title="Delete">&#xE872;</i></a>
+						</td>
+					</tr>
+						{% endfor %}
+					
+
+				{% endif %}
+
+					
+					
+					
+					
+				</tbody>
+				{% else %}
+				<h4>No product Added</h4>
+				{% endif %}
+			</table>
+			
+		</div>
+	</div>        
+</div>
+<!-- Edit Modal HTML -->
+
+<script>
+	$(document).ready(function(){
+		// Activate tooltip
+		$('[data-toggle="tooltip"]').tooltip();
+		
+		// Select/Deselect checkboxes
+		var checkbox = $('table tbody input[type="checkbox"]');
+		$("#selectAll").click(function(){
+			if(this.checked){
+				checkbox.each(function(){
+					this.checked = true;                        
+				});
+			} else{
+				checkbox.each(function(){
+					this.checked = false;                        
+				});
+			} 
+		});
+		checkbox.click(function(){
+			if(!this.checked){
+				$("#selectAll").prop("checked", false);
+			}
+		});
+	});
+	</script>
+</body>
+</html>
+{% endblock %}

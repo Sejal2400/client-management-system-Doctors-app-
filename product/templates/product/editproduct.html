@@ -1,0 +1,64 @@
+{% include 'base/header.html' %}
+{% block content %}
+    {{ form_data.errors }}
+    {{ form_data.non_field_errors }}
+
+<div class="container card shadow m-5"  >
+		<div class="card-body" style="padding-left: 50px;">
+			<h5 class="p-2" style="border-bottom: 2px solid rgb(47, 120, 237)">Add Product</h5>
+             <br>
+			<div class="container-fluid">
+				<form action="" method="post"  enctype="multipart/form-data">
+                    {% csrf_token %}
+					<div class="form-row">
+
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="{{ form_data.Product_name.id_for_label }}">Product_name</label>
+                                {{ form_data.Product_name }}
+							</div>
+						</div>
+
+
+                    	<div class="col-sm-12">
+							<div class="form-group">
+								<label for="{{ form_data.Company_name.id_for_label }}">Company_name</label>
+								
+                                {{ form_data.Company_name}}
+							</div>
+						</div>
+
+                        <div class="col-sm-12">
+							<div class="form-group">
+								<label for="{{ form_data.Product_image.id_for_label }}">Image:</label>
+                                {{ form_data.Product_image}}
+							</div>
+						</div>
+
+                        <div class="col-sm-12">
+							<div class="form-group">
+								<label for="{{ form_data.Product_price.id_for_label }}">Product_price</label>
+							
+                                {{ form_data.Product_price}}
+							</div>
+						</div>
+
+                    </div>
+					<hr>
+					<input type="submit" value="Submit" class="btn btn-primary">
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+        
+   
+        
+
+
+
+
+
+
+    
+{% endblock %}

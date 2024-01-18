@@ -1,0 +1,21 @@
+{% include 'base/header.html' %}
+{% block content %}
+    <!-- Add Modal HTML -->
+<div class="row" style="padding-left: 400px;margin: 10px;font-size: 27px; margin-top: 10px;  ">
+    <div class="col-lg-10">
+        <h2 style="color: rgb(94, 156, 249);">Add New Product</h2>
+   
+        <form method="POST" enctype="multipart/form-data" class="col-lg-10">
+ 
+        <!-- Security token -->
+            {% csrf_token %}
+     
+        <!-- Using the formset -->
+            {{ form.as_p }}
+            
+         
+            <button class="btn btn-primary p-2 m-4">Save</button>
+         </form>
+    </div>
+</div>
+{% endblock %}

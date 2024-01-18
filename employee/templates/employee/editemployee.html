@@ -1,0 +1,80 @@
+{% include 'base/header.html' %}
+{% block content %}
+    {{ form_data.errors }}
+    {{ form_data.non_field_errors }}
+
+<div class="container card shadow m-5"  >
+		<div class="card-body" style="padding-left: 50px;">
+			<h5 class="p-2" style="border-bottom: 2px solid rgb(47, 120, 237)">Add a Employee</h5>
+             <br>
+			<div class="container-fluid">
+				<form method="POST" action="" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    
+					<div class="form-row">
+
+                        <div class="col-sm-12">
+							<div class="form-group">
+								<label for="{{ form_data.first_name.id_for_label }}">First_name</label>
+                                {{ editemp.first_name }}
+							</div>
+						</div>
+
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="{{ form_data.last_name.id_for_label }}">Last_name</label>
+                                {{ editemp.last_name }}
+							</div>
+						</div>
+                    	
+
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="{{ form_data.email.id_for_label }}">email</label>
+								
+                                {{ editemp.email}}
+							</div>
+						</div>
+
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="{{ form_data.is_active.id_for_label }}">is_active</label>
+								
+                                {{ editemp.is_active}}
+							</div>
+						</div>
+
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="{{ form_data.date_joined.id_for_label }}">date_joined</label>
+								
+                                {{ editemp.date_joined}}
+							</div>
+						</div>
+
+
+                        
+
+                    </div>
+						
+
+					
+
+					
+					<input type="submit" value="Update" class="btn btn-primary">
+				</form>
+			</div>
+		</div>
+</div>
+</body>
+        
+   
+        
+
+
+
+
+
+
+    
+{% endblock %}

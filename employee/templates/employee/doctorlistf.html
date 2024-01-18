@@ -1,0 +1,38 @@
+{% include 'base/header.html' %}
+{% block content %}
+    {{ form_data.errors }}
+    {{ form_data.non_field_errors }}
+
+<div class="container card shadow m-5"  >
+		<div class="card-body" style="padding-left: 50px;">
+			<h5 class="p-2" style="border-bottom: 2px solid rgb(47, 120, 237)">Doctor list</h5>
+             <br>
+			<div class="container-fluid">
+				<form method="post" action="{% url 'doctorlistt' %}">
+                    {% csrf_token %}
+                    {{ form_data.as_p }}
+                    
+					
+
+						
+
+					
+
+                    
+					<input type="submit" value="Submit" class="btn btn-primary">
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+        
+   
+        
+
+
+
+
+
+
+    
+{% endblock %}

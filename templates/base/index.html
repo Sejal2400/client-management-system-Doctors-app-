@@ -1,0 +1,101 @@
+{% include 'base/header.html' %}
+{% block content %}
+    <div>
+
+        {% if user.is_authenticated %}
+            {% if user.is_superuser %}
+                <h1  style="color: rgb(30, 115, 243);">Hello !! Admin</h1>
+            {% else %}
+
+                 <h1  style="color: rgb(30, 115, 243);">Hello !!{{ request.user.first_name }} {{ request.user.last_name }}</h1>
+            {% endif %}
+        {% endif %}
+    </div>
+    <div class="row">
+        
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+          <a href="{% url 'product_list' %}">  <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
+                                Products</div><h1>
+                            <div class="h2 mb-0 font-weight-bold text-gray-800">{{ product_count }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-capsules fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div></a>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <a href="{% url 'doctor_list' %}"><div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-lg font-weight-bold text-success text-uppercase mb-1">
+                                Doctors</div>
+                            <div class="h2 mb-0 font-weight-bold text-gray-800">{{ doctor_count }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-user-md fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div></a>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <a href="{% url 'deal_list' %}"><div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-lg font-weight-bold text-info text-uppercase mb-1">Deals Done
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h2 mb-0 mr-3 font-weight-bold text-gray-800">{{ deal_count }}</div>
+                                </div>
+                                <div class="col">
+                                    
+                                </div>
+                            </div></a>
+                        </div>
+                        <div class="col-auto">
+                            <i class=" fas fa-sharp fa-solid fa-cart-plus fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if user.is_superuser%}
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <a href="{% url 'employee_list' %}"></a><div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-lg font-weight-bold text-warning text-uppercase mb-1">
+                                No. of Employee</div>
+                            <div class="h2 mb-0 font-weight-bold text-gray-800">{{ employee_count }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="far fa-user fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div></a>
+        </div>
+        {% endif %}
+    </div>
+    <div>
+        <a href="{% url 'todayschedule' %}"><button type="button" class="btn btn-primary btn-lg btn-sm">View Todays Schedule Appointment</button></a>
+        
+
+{% endblock %}
+
